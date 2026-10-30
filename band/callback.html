@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BAND 연결 완료 · 오늘학교</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;background:#f5f7fb;color:#111827;margin:0}
+main{max-width:620px;margin:10vh auto;padding:24px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:24px;padding:28px;box-shadow:0 14px 40px rgba(15,23,42,.08)}
+h1{margin:0 0 12px}.ok{color:#15803d}.err{color:#b91c1c}p{line-height:1.7;color:#4b5563}pre{white-space:pre-wrap;word-break:break-all;background:#f8fafc;border-radius:14px;padding:14px}
+</style>
+</head>
+<body>
+<main><div class="card">
+<h1 id="title">BAND 인증 확인 중</h1>
+<p id="message"></p>
+<pre id="details"></pre>
+</div></main>
+<script>
+const p=new URLSearchParams(location.search);
+const code=p.get('code');
+const error=p.get('error');
+if(code){
+  document.getElementById('title').textContent='BAND 인증 코드 수신 완료';
+  document.getElementById('title').className='ok';
+  document.getElementById('message').textContent='오늘학교가 BAND 인증 콜백을 정상적으로 받았습니다.';
+  document.getElementById('details').textContent='code='+code;
+}else if(error){
+  document.getElementById('title').textContent='BAND 인증 실패';
+  document.getElementById('title').className='err';
+  document.getElementById('message').textContent='BAND에서 오류가 반환되었습니다.';
+  document.getElementById('details').textContent=location.search;
+}else{
+  document.getElementById('title').textContent='오늘학교 BAND 콜백';
+  document.getElementById('message').textContent='BAND OAuth 인증 후 이 주소로 돌아오게 됩니다.';
+  document.getElementById('details').textContent=location.href;
+}
+</script>
+</body>
+</html>
