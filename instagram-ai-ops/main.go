@@ -17,7 +17,7 @@ import (
 //go:embed web/*
 var webFS embed.FS
 
-const appVersion = "0.3.0"
+const appVersion = "0.3.1"
 
 type App struct {
 	ig               *IGClient
@@ -60,7 +60,7 @@ func (a *App) routes() http.Handler {
 	static, _ := fs.Sub(webFS, "web")
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.FS(static))))
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		jsonOut(w, 200, map[string]any{"ok": true, "version": appVersion})
+		jsonOut(w, 200, map[string]any{"ok": true, "version": appVersion, "setup_required": !a.auth.enabled()})
 	})
 	mux.HandleFunc("/login", a.login)
 	mux.HandleFunc("/logout", a.logout)
@@ -98,6 +98,12 @@ func (a *App) index(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write(b)
 }
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
+	if !a.auth.enabled() {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.WriteHeader(503)
+		_, _ = w.Write([]byte(`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>설정 필요</title><body style="margin:0;background:#f6f7fb;font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;display:grid;place-items:center;min-height:100vh;color:#171923"><div style="width:min(560px,calc(100% - 32px));background:white;border:1px solid #e4e7ec;border-radius:22px;padding:32px"><div style="font-size:13px;font-weight:800;color:#6c63ff">INSTAGRAM AI OPS</div><h1>앱 비밀번호 설정이 필요합니다</h1><p style="line-height:1.7;color:#6f7580">Render 대시보드에서 이 서비스의 Environment에 <b>APP_ACCESS_PASSWORD</b> 하나를 추가하세요. 원하는 개인 비밀번호를 값으로 넣고 저장하면 앱이 자동 재배포됩니다.</p><p style="color:#8a909a;font-size:13px">비밀번호는 ChatGPT에게 보내지 말고 Render에 직접 입력하세요.</p></div></body></html>`))
+		return
+	}
 	if r.Method == http.MethodGet {
 		if a.auth.allowed(r) {
 			http.Redirect(w, r, "/", 302)
@@ -171,75 +177,41 @@ func (a *App) connectToken(w http.ResponseWriter, r *http.Request) {
 		errOut(w, 405, "POST만 지원합니다.")
 		return
 	}
-	var in struct {
-		AccessToken string `json:"access_token"`
-	}
+	var in struct { AccessToken string `json:"access_token"` }
 	if json.NewDecoder(r.Body).Decode(&in) != nil || strings.TrimSpace(in.AccessToken) == "" {
 		errOut(w, 400, "Instagram Access Token을 입력하세요.")
 		return
 	}
 	token := strings.TrimSpace(in.AccessToken)
 	p, media, e := a.ig.SyncAccount(r.Context(), token)
-	if e != nil {
-		errOut(w, 502, e.Error())
-		return
-	}
+	if e != nil { errOut(w, 502, e.Error()); return }
 	acc := accountFromProfile(p, media, token, 59*24*3600)
-	if acc.ID == "" || acc.Username == "" {
-		errOut(w, 502, "Instagram 계정 정보를 확인하지 못했습니다.")
-		return
-	}
+	if acc.ID == "" || acc.Username == "" { errOut(w, 502, "Instagram 계정 정보를 확인하지 못했습니다."); return }
 	blob, e := sealAccount(acc)
-	if e != nil {
-		errOut(w, 500, "계정 연결 정보 암호화에 실패했습니다.")
-		return
-	}
+	if e != nil { errOut(w, 500, "계정 연결 정보 암호화에 실패했습니다."); return }
 	jsonOut(w, 200, map[string]any{"ok": true, "account": safeAccount(acc), "blob": blob})
 }
 func (a *App) syncAccount(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		errOut(w, 405, "POST만 지원합니다.")
-		return
-	}
-	var in struct {
-		Blob string `json:"blob"`
-	}
-	if json.NewDecoder(r.Body).Decode(&in) != nil || in.Blob == "" {
-		errOut(w, 400, "계정 연결 정보가 없습니다.")
-		return
-	}
+	if r.Method != http.MethodPost { errOut(w, 405, "POST만 지원합니다."); return }
+	var in struct { Blob string `json:"blob"` }
+	if json.NewDecoder(r.Body).Decode(&in) != nil || in.Blob == "" { errOut(w, 400, "계정 연결 정보가 없습니다."); return }
 	acc, e := openAccount(in.Blob)
-	if e != nil {
-		errOut(w, 400, "저장된 계정 연결 정보를 읽지 못했습니다.")
-		return
-	}
+	if e != nil { errOut(w, 400, "저장된 계정 연결 정보를 읽지 못했습니다."); return }
 	token := acc.AccessToken
 	if !acc.TokenExpiresAt.IsZero() && time.Until(acc.TokenExpiresAt) < 14*24*time.Hour {
-		if nt, sec, x := a.ig.RefreshToken(r.Context(), token); x == nil && nt != "" {
-			token = nt
-			acc.TokenExpiresAt = time.Now().Add(time.Duration(sec) * time.Second)
-		}
+		if nt, sec, x := a.ig.RefreshToken(r.Context(), token); x == nil && nt != "" { token = nt; acc.TokenExpiresAt = time.Now().Add(time.Duration(sec) * time.Second) }
 	}
 	p, media, e := a.ig.SyncAccount(r.Context(), token)
-	if e != nil {
-		errOut(w, 502, e.Error())
-		return
-	}
+	if e != nil { errOut(w, 502, e.Error()); return }
 	fresh := accountFromProfile(p, media, token, int64(time.Until(acc.TokenExpiresAt).Seconds()))
-	if fresh.ID == "" {
-		fresh.ID = acc.ID
-	}
+	if fresh.ID == "" { fresh.ID = acc.ID }
 	blob, e := sealAccount(fresh)
-	if e != nil {
-		errOut(w, 500, "동기화 정보를 암호화하지 못했습니다.")
-		return
-	}
+	if e != nil { errOut(w, 500, "동기화 정보를 암호화하지 못했습니다."); return }
 	jsonOut(w, 200, map[string]any{"ok": true, "account": safeAccount(fresh), "blob": blob})
 }
 func (a *App) authStart(w http.ResponseWriter, r *http.Request) {
 	if a.appID == "" || a.appSecret == "" {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Render에 META_INSTAGRAM_APP_ID와 META_INSTAGRAM_APP_SECRET을 먼저 설정하세요."), 302)
-		return
+		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Render에 META_INSTAGRAM_APP_ID와 META_INSTAGRAM_APP_SECRET을 먼저 설정하세요."), 302); return
 	}
 	state := randomString(24)
 	redirect := baseURL(r) + "/auth/instagram/callback"
@@ -248,67 +220,30 @@ func (a *App) authStart(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, a.ig.AuthURL(a.appID, redirect, state), 302)
 }
 func (a *App) authCallback(w http.ResponseWriter, r *http.Request) {
-	if er := r.URL.Query().Get("error"); er != "" {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape(r.URL.Query().Get("error_description")), 302)
-		return
-	}
+	if er := r.URL.Query().Get("error"); er != "" { http.Redirect(w, r, "/?connect_error="+url.QueryEscape(r.URL.Query().Get("error_description")), 302); return }
 	sc, e := r.Cookie("igops_oauth_state")
-	if e != nil || sc.Value == "" || sc.Value != r.URL.Query().Get("state") {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Instagram 인증 상태가 일치하지 않습니다. 다시 연결하세요."), 302)
-		return
-	}
+	if e != nil || sc.Value == "" || sc.Value != r.URL.Query().Get("state") { http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Instagram 인증 상태가 일치하지 않습니다. 다시 연결하세요."), 302); return }
 	rc, e := r.Cookie("igops_oauth_redirect")
-	if e != nil {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("OAuth 콜백 주소 정보를 찾지 못했습니다."), 302)
-		return
-	}
+	if e != nil { http.Redirect(w, r, "/?connect_error="+url.QueryEscape("OAuth 콜백 주소 정보를 찾지 못했습니다."), 302); return }
 	redirectBytes, e := base64.RawURLEncoding.DecodeString(rc.Value)
-	if e != nil {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("OAuth 콜백 주소를 읽지 못했습니다."), 302)
-		return
-	}
+	if e != nil { http.Redirect(w, r, "/?connect_error="+url.QueryEscape("OAuth 콜백 주소를 읽지 못했습니다."), 302); return }
 	code := r.URL.Query().Get("code")
-	if code == "" {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Instagram 인증 코드를 받지 못했습니다."), 302)
-		return
-	}
+	if code == "" { http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Instagram 인증 코드를 받지 못했습니다."), 302); return }
 	token, uid, expires, e := a.ig.ExchangeCode(r.Context(), a.appID, a.appSecret, string(redirectBytes), code)
-	if e != nil {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape(e.Error()), 302)
-		return
-	}
+	if e != nil { http.Redirect(w, r, "/?connect_error="+url.QueryEscape(e.Error()), 302); return }
 	p, media, e := a.ig.SyncAccount(r.Context(), token)
-	if e != nil {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape(e.Error()), 302)
-		return
-	}
+	if e != nil { http.Redirect(w, r, "/?connect_error="+url.QueryEscape(e.Error()), 302); return }
 	acc := accountFromProfile(p, media, token, expires)
-	if acc.ID == "" {
-		acc.ID = uid
-	}
-	if acc.ID == "" || acc.Username == "" {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Instagram 계정 정보를 확인하지 못했습니다."), 302)
-		return
-	}
+	if acc.ID == "" { acc.ID = uid }
+	if acc.ID == "" || acc.Username == "" { http.Redirect(w, r, "/?connect_error="+url.QueryEscape("Instagram 계정 정보를 확인하지 못했습니다."), 302); return }
 	blob, e := sealAccount(acc)
-	if e != nil {
-		http.Redirect(w, r, "/?connect_error="+url.QueryEscape("연결 정보 암호화에 실패했습니다."), 302)
-		return
-	}
+	if e != nil { http.Redirect(w, r, "/?connect_error="+url.QueryEscape("연결 정보 암호화에 실패했습니다."), 302); return }
 	http.Redirect(w, r, "/?connected_blob="+url.QueryEscape(blob)+"&connected_id="+url.QueryEscape(acc.ID), 302)
 }
 func main() {
-	if os.Getenv("APP_ENCRYPTION_KEY") == "" {
-		log.Fatal("APP_ENCRYPTION_KEY 환경변수가 필요합니다")
-	}
-	if os.Getenv("RENDER") != "" && os.Getenv("APP_ACCESS_PASSWORD") == "" {
-		log.Fatal("공개 배포에서는 APP_ACCESS_PASSWORD를 반드시 설정해야 합니다")
-	}
 	app := &App{ig: NewIGClient(), auth: NewAuth(), appID: strings.TrimSpace(os.Getenv("META_INSTAGRAM_APP_ID")), appSecret: strings.TrimSpace(os.Getenv("META_INSTAGRAM_APP_SECRET"))}
 	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8765"
-	}
+	if port == "" { port = "8765" }
 	log.Printf("Instagram AI Ops v%s listening on :%s", appVersion, port)
 	log.Fatal(http.ListenAndServe(":"+port, app.routes()))
 }
