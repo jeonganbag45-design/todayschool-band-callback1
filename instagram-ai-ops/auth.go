@@ -2,7 +2,6 @@ package main
 
 import (
 	"crypto/hmac"
-	"crypto/rand"
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/base64"
@@ -18,12 +17,11 @@ type Auth struct {
 }
 
 func NewAuth() *Auth {
-	pw := os.Getenv("APP_ACCESS_PASSWORD")
-	sec := os.Getenv("SESSION_SECRET")
-	if sec == "" {
-		b := make([]byte, 32)
-		_, _ = rand.Read(b)
-		sec = base64.RawURLEncoding.EncodeToString(b)
+	pw := strings.TrimSpace(os.Getenv("APP_ACCESS_PASSWORD"))
+	sec := strings.TrimSpace(os.Getenv("SESSION_SECRET"))
+	if sec == "" && pw != "" {
+		sum := sha256.Sum256([]byte("session:" + pw))
+		sec = base64.RawURLEncoding.EncodeToString(sum[:])
 	}
 	return &Auth{password: pw, secret: []byte(sec)}
 }
@@ -38,6 +36,9 @@ func (a *Auth) token() string {
 	return payload + "." + a.sign(payload)
 }
 func (a *Auth) valid(v string) bool {
+	if !a.enabled() || len(a.secret) == 0 {
+		return false
+	}
 	p := strings.Split(v, ".")
 	if len(p) != 2 || subtle.ConstantTimeCompare([]byte(a.sign(p[0])), []byte(p[1])) != 1 {
 		return false
@@ -60,11 +61,14 @@ func (a *Auth) clear(w http.ResponseWriter, r *http.Request) {
 }
 func (a *Auth) allowed(r *http.Request) bool {
 	if !a.enabled() {
-		return true
+		return false
 	}
 	c, e := r.Cookie("igops_session")
 	return e == nil && a.valid(c.Value)
 }
 func (a *Auth) check(v string) bool {
+	if !a.enabled() {
+		return false
+	}
 	return subtle.ConstantTimeCompare([]byte(v), []byte(a.password)) == 1
 }
