@@ -1,0 +1,90 @@
+name: Refresh timetable data
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/refresh-timetable.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch latest timetable
+        shell: python
+        run: |
+          import json, urllib.parse, urllib.request, pathlib, datetime, sys
+
+          base = 'https://api.timefor.school/timetable'
+          common = {
+              'grade': '2',
+              'classno': '8',
+              'week': '0',
+              'schoolcode': '7091455',
+          }
+          attempts = [
+              {**common, 'source': 'comcigan'},
+              {**common, 'source': 'auto'},
+              common,
+          ]
+
+          data = None
+          errors = []
+          for params in attempts:
+              url = base + '?' + urllib.parse.urlencode(params)
+              try:
+                  req = urllib.request.Request(url, headers={
+                      'Accept': 'application/json',
+                      'User-Agent': 'TodaySchool-GitHubAction/1.0',
+                  })
+                  with urllib.request.urlopen(req, timeout=25) as r:
+                      raw = r.read().decode('utf-8')
+                      data = json.loads(raw)
+                      break
+              except Exception as e:
+                  errors.append(f'{url}: {e}')
+
+          if data is None:
+              print('\n'.join(errors))
+              raise SystemExit('All timetable sources failed')
+
+          path = pathlib.Path('timetable.json')
+          old_data = None
+          if path.exists():
+              try:
+                  old = json.loads(path.read_text(encoding='utf-8'))
+                  old_data = old.get('data')
+              except Exception:
+                  pass
+
+          if old_data == data:
+              print('Timetable unchanged')
+              sys.exit(0)
+
+          payload = {
+              'ok': True,
+              'data': data,
+              'updatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+          }
+          path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
+          print('Timetable updated')
+
+      - name: Commit changed timetable
+        run: |
+          if git diff --quiet -- timetable.json; then
+            echo "No timetable change"
+            exit 0
+          fi
+          git config user.name "TodaySchool Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add timetable.json
+          git commit -m "Update timetable cache"
+          git push
