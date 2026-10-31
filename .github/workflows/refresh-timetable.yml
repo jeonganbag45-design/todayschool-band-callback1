@@ -18,64 +18,58 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch latest timetable
+      - name: Fetch this week and next week
         shell: python
         run: |
           import json, urllib.parse, urllib.request, pathlib, datetime, sys
 
           base = 'https://api.timefor.school/timetable'
-          common = {
-              'grade': '2',
-              'classno': '8',
-              'week': '0',
-              'schoolcode': '7091455',
-          }
-          attempts = [
-              {**common, 'source': 'comcigan'},
-              {**common, 'source': 'auto'},
-              common,
-          ]
+          school = {'grade': '2', 'classno': '8', 'schoolcode': '7091455'}
 
-          data = None
-          errors = []
-          for params in attempts:
-              url = base + '?' + urllib.parse.urlencode(params)
-              try:
-                  req = urllib.request.Request(url, headers={
-                      'Accept': 'application/json',
-                      'User-Agent': 'TodaySchool-GitHubAction/1.0',
-                  })
-                  with urllib.request.urlopen(req, timeout=25) as r:
-                      raw = r.read().decode('utf-8')
-                      data = json.loads(raw)
-                      break
-              except Exception as e:
-                  errors.append(f'{url}: {e}')
+          def fetch_week(week):
+              errors = []
+              attempts = [
+                  {**school, 'week': str(week), 'source': 'comcigan'},
+                  {**school, 'week': str(week), 'source': 'auto'},
+                  {**school, 'week': str(week)},
+              ]
+              for params in attempts:
+                  url = base + '?' + urllib.parse.urlencode(params)
+                  try:
+                      req = urllib.request.Request(url, headers={
+                          'Accept': 'application/json',
+                          'User-Agent': 'TodaySchool-GitHubAction/1.1',
+                      })
+                      with urllib.request.urlopen(req, timeout=25) as r:
+                          return json.loads(r.read().decode('utf-8'))
+                  except Exception as e:
+                      errors.append(f'{url}: {e}')
+              raise RuntimeError('\n'.join(errors))
 
-          if data is None:
-              print('\n'.join(errors))
-              raise SystemExit('All timetable sources failed')
+          weeks = {}
+          for week in (0, 1):
+              weeks[str(week)] = fetch_week(week)
 
           path = pathlib.Path('timetable.json')
-          old_data = None
+          old_weeks = None
           if path.exists():
               try:
                   old = json.loads(path.read_text(encoding='utf-8'))
-                  old_data = old.get('data')
+                  old_weeks = old.get('weeks')
               except Exception:
                   pass
 
-          if old_data == data:
+          if old_weeks == weeks:
               print('Timetable unchanged')
               sys.exit(0)
 
           payload = {
               'ok': True,
-              'data': data,
+              'weeks': weeks,
               'updatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
           }
           path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
-          print('Timetable updated')
+          print('Timetable cache updated for week 0 and week 1')
 
       - name: Commit changed timetable
         run: |
