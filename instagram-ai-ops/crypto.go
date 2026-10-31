@@ -16,13 +16,12 @@ import (
 func keyBytes() ([]byte, error) {
 	raw := strings.TrimSpace(os.Getenv("APP_ENCRYPTION_KEY"))
 	if raw == "" {
-		pw := strings.TrimSpace(os.Getenv("APP_ACCESS_PASSWORD"))
-		if pw == "" {
-			return nil, errors.New("앱 비밀번호 설정이 필요합니다")
-		}
-		raw = "encryption:" + pw
+		raw = strings.TrimSpace(os.Getenv("META_INSTAGRAM_APP_SECRET"))
 	}
-	sum := sha256.Sum256([]byte(raw))
+	if raw == "" {
+		return nil, errors.New("서버 암호화 설정이 아직 준비되지 않았습니다")
+	}
+	sum := sha256.Sum256([]byte("igops-account:" + raw))
 	return sum[:], nil
 }
 
