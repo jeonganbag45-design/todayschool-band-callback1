@@ -10,12 +10,17 @@ import (
 	"errors"
 	"io"
 	"os"
+	"strings"
 )
 
 func keyBytes() ([]byte, error) {
-	raw := os.Getenv("APP_ENCRYPTION_KEY")
+	raw := strings.TrimSpace(os.Getenv("APP_ENCRYPTION_KEY"))
 	if raw == "" {
-		return nil, errors.New("APP_ENCRYPTION_KEY가 설정되지 않았습니다")
+		pw := strings.TrimSpace(os.Getenv("APP_ACCESS_PASSWORD"))
+		if pw == "" {
+			return nil, errors.New("앱 비밀번호 설정이 필요합니다")
+		}
+		raw = "encryption:" + pw
 	}
 	sum := sha256.Sum256([]byte(raw))
 	return sum[:], nil
