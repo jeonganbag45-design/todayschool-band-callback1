@@ -7,10 +7,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="오늘학교">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <title>오늘학교</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <div class="app">
@@ -19,94 +19,52 @@
       <div><div class="brand">오늘학교</div><div class="school">중동중학교 · 2학년 8반</div></div>
       <div id="status" class="status"><span class="dot"></span><span id="statusText">연결 중</span></div>
     </div>
-
     <div class="card">
       <div class="hero">
-        <div>
-          <div id="heroLabel" class="eyebrow">오늘 시간표</div>
-          <h1 id="heroMain">불러오는 중</h1>
-          <div id="heroSub" class="heroSub">컴시간 시간표를 확인하고 있어요.</div>
-        </div>
+        <div><div id="heroLabel" class="eyebrow">오늘 시간표</div><h1 id="heroMain">불러오는 중</h1><div id="heroSub" class="heroSub">컴시간 시간표를 확인하고 있어요.</div></div>
         <button class="ghost" onclick="loadTimetable()" aria-label="새로고침">↻</button>
       </div>
       <div id="todayList" style="margin-top:13px"><div class="muted">시간표를 불러오는 중입니다.</div></div>
     </div>
-
     <div class="card">
-      <div class="sectionHead">
-        <div class="sectionTitle">주간 시간표</div>
-        <span id="homeAssessCount" class="countPill">7일 내 0개</span>
-      </div>
+      <div class="sectionHead"><div class="sectionTitle">주간 시간표</div><span id="homeAssessCount" class="countPill">7일 내 0개</span></div>
       <div id="weekGrid"><div class="muted">주간 시간표를 불러오는 중입니다.</div></div>
       <div id="homeUpcoming" class="homeAssess">등록된 예정 수행평가가 없습니다.</div>
     </div>
-
     <div class="card navCard" onclick="showManager()">
-      <div>
-        <div class="navTitle">수행평가 일정관리</div>
-        <div class="navDesc">달력 날짜를 눌러 수행평가를 추가 · 수정 · 삭제</div>
-      </div>
-      <div class="chev">›</div>
+      <div><div class="navTitle">수행평가 일정관리</div><div class="navDesc">달력 날짜를 눌러 수행평가를 추가 · 수정 · 삭제</div></div><div class="chev">›</div>
     </div>
-
     <div id="installCard" class="card hidden">
-      <div class="sectionTitle">폰에 앱으로 설치</div>
-      <div class="muted" style="margin-top:7px">홈 화면에 설치하면 주소창 없이 일반 앱처럼 열 수 있습니다.</div>
+      <div class="sectionTitle">폰에 앱으로 설치</div><div class="muted" style="margin-top:7px">홈 화면에 설치하면 주소창 없이 일반 앱처럼 열 수 있습니다.</div>
       <button id="installBtn" class="primary" style="width:100%;margin-top:12px">홈 화면에 설치</button>
       <div class="installNote">iPhone은 Safari의 공유 버튼 → ‘홈 화면에 추가’를 사용하세요.</div>
     </div>
   </section>
-
   <section id="managerView" class="hidden">
-    <div class="viewHead">
-      <button class="back" onclick="showHome()">‹</button>
-      <div><div class="viewTitle">수행평가 일정관리</div><div class="school">날짜를 누르면 바로 추가할 수 있어요.</div></div>
-    </div>
-
+    <div class="viewHead"><button class="back" onclick="showHome()">‹</button><div><div class="viewTitle">수행평가 일정관리</div><div class="school">날짜를 누르면 바로 추가할 수 있어요.</div></div></div>
     <div class="card">
-      <div class="sectionHead">
-        <div class="sectionTitle">수행평가 달력</div>
-        <span id="managerCount" class="countPill">7일 내 0개</span>
-      </div>
-      <div class="calendarHead">
-        <button class="calArrow" onclick="changeMonth(-1)">‹</button>
-        <div id="calendarTitle" class="calendarTitle"></div>
-        <button class="calArrow" onclick="changeMonth(1)">›</button>
-      </div>
-      <div class="dow"><div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div></div>
-      <div id="calendarGrid" class="calGrid"></div>
+      <div class="sectionHead"><div class="sectionTitle">수행평가 달력</div><span id="managerCount" class="countPill">7일 내 0개</span></div>
+      <div class="calendarHead"><button class="calArrow" onclick="changeMonth(-1)">‹</button><div id="calendarTitle" class="calendarTitle"></div><button class="calArrow" onclick="changeMonth(1)">›</button></div>
+      <div class="dow"><div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div></div><div id="calendarGrid" class="calGrid"></div>
     </div>
-
-    <div class="card">
-      <div class="sectionTitle">다가오는 수행평가</div>
-      <div id="assessmentList" style="margin-top:7px"></div>
-    </div>
+    <div class="card"><div class="sectionTitle">다가오는 수행평가</div><div id="assessmentList" style="margin-top:7px"></div></div>
   </section>
 </div>
-
 <div id="modalWrap" class="modalWrap hidden" onclick="modalBackdrop(event)">
   <div class="modal">
-    <div class="modalTop">
-      <div>
-        <div id="modalTitle" class="modalTitle">수행평가 추가</div>
-        <div id="modalDate" class="datePill"></div>
-      </div>
-      <button class="light" onclick="closeModal()">닫기</button>
-    </div>
-    <label>과목</label>
-    <select id="subjectInput"></select>
-    <label>수행평가 내용</label>
-    <input id="titleInput" placeholder="예: 생태계 조사 보고서 발표">
-    <label>메모 <span style="font-weight:500">(선택)</span></label>
-    <textarea id="noteInput" placeholder="준비물, 제출 방식, 범위 등을 적어두세요."></textarea>
-    <div class="modalActions">
-      <button class="light" onclick="closeModal()">취소</button>
-      <button class="primary" onclick="saveAssessment()">저장</button>
-    </div>
+    <div class="modalTop"><div><div id="modalTitle" class="modalTitle">수행평가 추가</div><div id="modalDate" class="datePill"></div></div><button class="light" onclick="closeModal()">닫기</button></div>
+    <label>과목</label><select id="subjectInput"></select><label>수행평가 내용</label><input id="titleInput" placeholder="예: 생태계 조사 보고서 발표"><label>메모 <span style="font-weight:500">(선택)</span></label><textarea id="noteInput" placeholder="준비물, 제출 방식, 범위 등을 적어두세요."></textarea>
+    <div class="modalActions"><button class="light" onclick="closeModal()">취소</button><button class="primary" onclick="saveAssessment()">저장</button></div>
   </div>
 </div>
 <div id="toast" class="toast"></div>
-
-<script src="/app.js"></script>
+<script>
+  const nativeFetch=window.fetch.bind(window);
+  window.fetch=function(input,init){
+    if(typeof input==="string"&&input.indexOf("/api/timetable")===0){return nativeFetch("./timetable.json?_="+Date.now(),init);}
+    return nativeFetch(input,init);
+  };
+</script>
+<script src="./app.js"></script>
 </body>
 </html>
