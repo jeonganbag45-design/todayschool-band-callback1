@@ -60,8 +60,17 @@
 <div id="toast" class="toast"></div>
 <script>
   const nativeFetch=window.fetch.bind(window);
-  window.fetch=function(input,init){
-    if(typeof input==="string"&&input.indexOf("/api/timetable")===0){return nativeFetch("./timetable.json?_="+Date.now(),init);}
+  window.fetch=async function(input,init){
+    if(typeof input==="string"&&input.indexOf("/api/timetable")===0){
+      const requested=new URL(input,location.href).searchParams.get("week")||"0";
+      const cachedResponse=await nativeFetch("./timetable.json?_="+Date.now(),{cache:"no-store"});
+      const cache=await cachedResponse.json();
+      const selected=(cache.weeks&&cache.weeks[requested])?cache.weeks[requested]:(cache.data||cache);
+      return new Response(JSON.stringify({ok:true,data:selected}),{
+        status:cachedResponse.ok?200:cachedResponse.status,
+        headers:{"Content-Type":"application/json"}
+      });
+    }
     return nativeFetch(input,init);
   };
 </script>
