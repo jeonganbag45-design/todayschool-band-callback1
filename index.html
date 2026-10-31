@@ -2,20 +2,103 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>오늘학교 BAND 연결</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="오늘학교">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>오늘학교 · 수행평가</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;background:#f5f7fb;color:#111827;margin:0}
-main{max-width:620px;margin:10vh auto;padding:24px}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:24px;padding:28px;box-shadow:0 14px 40px rgba(15,23,42,.08)}
-h1{margin:0 0 12px}p{line-height:1.7;color:#4b5563}
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#758096;--line:#e8edf4;--blue:#2563eb;--blue2:#eaf1ff;--red:#e5484d;--orange:#f59e0b;--green:#16a34a;--shadow:0 14px 38px rgba(30,48,80,.08)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif}button,input,select,textarea{font:inherit}.app{max-width:720px;margin:0 auto;padding:22px 16px calc(110px + env(safe-area-inset-bottom))}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--blue)}h1{font-size:30px;line-height:1.12;letter-spacing:-1.3px;margin:4px 0 3px}.school{font-size:13px;color:var(--muted)}.install{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 12px;font-weight:800;color:#3d4a61}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:18px;margin-bottom:14px}.hero{background:linear-gradient(135deg,#172033,#293752);color:#fff;border:0}.heroTop{display:flex;justify-content:space-between;align-items:center}.hero .small{font-size:12px;color:#bfc9da}.hero .count{font-size:34px;font-weight:900;letter-spacing:-1px;margin-top:6px}.hero .next{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.13);display:flex;justify-content:space-between;gap:10px}.hero .next b{font-size:15px}.dday{display:inline-flex;align-items:center;justify-content:center;min-width:52px;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:900;background:#fff;color:#172033}.sectionTitle{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.sectionTitle h2{font-size:17px;margin:0;letter-spacing:-.4px}.monthNav{display:flex;align-items:center;gap:8px}.iconBtn{width:34px;height:34px;border:0;border-radius:11px;background:#f2f5f9;font-weight:900;color:#556176}.monthLabel{font-weight:900;min-width:105px;text-align:center}.weekhead,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.weekhead div{text-align:center;font-size:11px;font-weight:800;color:#9aa4b6;padding-bottom:4px}.day{min-height:74px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;padding:7px;cursor:pointer;overflow:hidden}.day.out{opacity:.32}.day.today{border-color:#8db3ff;background:#f3f7ff}.num{font-size:11px;font-weight:900;margin-bottom:5px}.dots{display:flex;flex-direction:column;gap:3px}.eventChip{font-size:9px;font-weight:800;padding:3px 5px;border-radius:7px;background:var(--blue2);color:#2455ad;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.eventChip.urgent{background:#fff0f0;color:#c93f45}.addBtn{position:fixed;right:max(18px,calc((100vw - 720px)/2 + 18px));bottom:calc(22px + env(safe-area-inset-bottom));width:58px;height:58px;border:0;border-radius:20px;background:var(--blue);color:#fff;font-size:32px;line-height:1;box-shadow:0 16px 36px rgba(37,99,235,.34);z-index:20}.list{display:flex;flex-direction:column;gap:10px}.item{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff}.itemTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.subject{font-size:11px;font-weight:900;color:var(--blue);margin-bottom:4px}.title{font-size:15px;font-weight:900;letter-spacing:-.2px}.meta{font-size:12px;color:var(--muted);margin-top:5px}.notes{font-size:12px;color:#566177;line-height:1.55;margin-top:9px;white-space:pre-wrap}.actions{display:flex;gap:7px;margin-top:12px}.actions button{border:0;border-radius:11px;padding:8px 10px;font-size:11px;font-weight:900}.calendarBtn{background:#eaf7ee;color:#16713a}.editBtn{background:#f0f3f8;color:#536078}.deleteBtn{background:#fff0f0;color:#c7393f;margin-left:auto}.empty{text-align:center;padding:26px 10px;color:#8a95a8;font-size:13px;line-height:1.7}.hint{font-size:11px;color:#8a95a8;line-height:1.6;margin-top:10px}.toolbar{display:flex;gap:8px}.toolbar button{border:0;border-radius:12px;padding:9px 11px;font-weight:900;font-size:11px;background:#f0f3f8;color:#566177}.modal{position:fixed;inset:0;background:rgba(12,19,32,.48);display:none;align-items:flex-end;justify-content:center;z-index:50}.modal.show{display:flex}.sheet{width:100%;max-width:720px;background:#fff;border-radius:28px 28px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -18px 60px rgba(0,0,0,.18);max-height:92vh;overflow:auto}.grab{width:42px;height:5px;border-radius:999px;background:#d8dee8;margin:0 auto 16px}.sheet h3{margin:0 0 16px;font-size:21px}.field{margin-bottom:13px}.field label{display:block;font-size:11px;font-weight:900;color:#657189;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;border:1px solid #dfe5ee;background:#fbfcfe;border-radius:14px;padding:12px 13px;outline:none}.field input:focus,.field textarea:focus{border-color:#80a9ff;background:#fff}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.check{display:flex;gap:9px;align-items:flex-start;background:#f5f8ff;border-radius:14px;padding:11px 12px;font-size:12px;color:#566177;line-height:1.5}.check input{margin-top:2px}.sheetButtons{display:grid;grid-template-columns:1fr 2fr;gap:9px;margin-top:16px}.sheetButtons button{border:0;border-radius:15px;padding:13px;font-weight:900}.cancel{background:#eef1f6;color:#59657a}.save{background:var(--blue);color:#fff}.toast{position:fixed;left:50%;bottom:calc(94px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#172033;color:#fff;border-radius:999px;padding:10px 14px;font-size:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:80;max-width:90%;text-align:center}.toast.show{opacity:1}.notice{background:#fff9e9;border:1px solid #f3dfa9;color:#795d16;border-radius:16px;padding:11px 12px;font-size:11px;line-height:1.55;margin-top:12px}@media(min-width:620px){.day{min-height:90px}.eventChip{font-size:10px}}
 </style>
 </head>
 <body>
-<main><div class="card">
-<h1>오늘학교</h1>
-<p>BAND 연동을 위한 OAuth 콜백 호스트입니다.</p>
-<p>개인용 오늘학교 앱의 BAND 인증에만 사용합니다.</p>
-</div></main>
+<div class="app">
+  <div class="top">
+    <div><div class="eyebrow">TODAY SCHOOL</div><h1>수행평가 캘린더</h1><div class="school">중동중학교 · 2학년 8반</div></div>
+    <button class="install" id="installBtn">홈 화면에 설치</button>
+  </div>
+
+  <section class="card hero">
+    <div class="heroTop"><div><div class="small">앞으로 7일</div><div class="count" id="weekCount">0개</div></div><div class="dday" id="nearestDday">일정 없음</div></div>
+    <div class="next"><div><div class="small">가장 가까운 수행평가</div><b id="nearestTitle">등록된 일정이 없습니다</b></div><div class="small" id="nearestDate"></div></div>
+  </section>
+
+  <section class="card">
+    <div class="sectionTitle"><h2>월간 일정</h2><div class="monthNav"><button class="iconBtn" id="prevMonth">‹</button><div class="monthLabel" id="monthLabel"></div><button class="iconBtn" id="nextMonth">›</button></div></div>
+    <div class="weekhead"><div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div></div>
+    <div class="grid" id="calendarGrid"></div>
+    <div class="hint">날짜를 누르면 그 날짜로 수행평가를 바로 추가할 수 있습니다.</div>
+  </section>
+
+  <section class="card">
+    <div class="sectionTitle"><h2>예정된 수행평가</h2><div class="toolbar"><button id="exportAllBtn">전체 알림 파일</button><button id="backupBtn">백업</button></div></div>
+    <div class="list" id="upcomingList"></div>
+    <div class="notice">폰 알림은 일정마다 <b>D-3 · D-2 · D-1 · 당일</b> 총 4회가 들어간 캘린더 파일(.ics)로 등록합니다. 휴대폰에서 파일을 열고 캘린더에 추가하면 앱을 닫아도 휴대폰 캘린더가 알림을 담당합니다.</div>
+  </section>
+</div>
+<button class="addBtn" id="addBtn" aria-label="수행평가 추가">＋</button>
+<div class="toast" id="toast"></div>
+
+<div class="modal" id="modal">
+  <div class="sheet">
+    <div class="grab"></div><h3 id="formHeading">수행평가 추가</h3>
+    <form id="assessmentForm">
+      <input type="hidden" id="editId">
+      <div class="row">
+        <div class="field"><label for="subject">과목</label><input id="subject" required placeholder="예: 과학"></div>
+        <div class="field"><label for="date">수행평가 날짜</label><input id="date" type="date" required></div>
+      </div>
+      <div class="field"><label for="title">내용</label><input id="title" required placeholder="예: 생태계 조사 보고서 발표"></div>
+      <div class="row">
+        <div class="field"><label for="alertTime">알림 시간</label><input id="alertTime" type="time" value="07:30" required></div>
+        <div class="field"><label for="type">유형</label><select id="type"><option>수행평가</option><option>발표</option><option>과제 제출</option><option>시험</option><option>기타</option></select></div>
+      </div>
+      <div class="field"><label for="notes">준비사항 / 메모</label><textarea id="notes" rows="3" placeholder="준비물, 범위, 제출 방법 등을 적어두세요"></textarea></div>
+      <label class="check"><input id="makeCalendar" type="checkbox" checked><span>저장하면서 휴대폰 캘린더 알림 파일도 만들기<br><b>D-3, D-2, D-1, 당일</b> 같은 시간에 알림</span></label>
+      <div class="sheetButtons"><button type="button" class="cancel" id="cancelBtn">취소</button><button type="submit" class="save">저장</button></div>
+    </form>
+  </div>
+</div>
+<script>
+const KEY='todayschool.assessments.v1';
+let items=load();
+let viewMonth=new Date(); viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth(),1);
+let deferredPrompt=null;
+const $=id=>document.getElementById(id);
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(items))}
+function esc(s){return String(s||'').replace(/[&<>'\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]))}
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseDate(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function today0(){const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+function diffDays(s){return Math.round((parseDate(s)-today0())/86400000)}
+function ddayText(s){const d=diffDays(s);return d===0?'D-DAY':d>0?'D-'+d:'D+'+Math.abs(d)}
+function formatDate(s){const d=parseDate(s);return `${d.getMonth()+1}월 ${d.getDate()}일 (${['일','월','화','수','목','금','토'][d.getDay()]})`}
+function sortItems(){items.sort((a,b)=>a.date.localeCompare(b.date)||(a.alertTime||'').localeCompare(b.alertTime||''))}
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2300)}
+function render(){sortItems();renderSummary();renderCalendar();renderList();persist()}
+function renderSummary(){const future=items.filter(x=>diffDays(x.date)>=0);const w=future.filter(x=>diffDays(x.date)<=7);$('weekCount').textContent=w.length+'개';if(future.length){const n=future[0];$('nearestDday').textContent=ddayText(n.date);$('nearestTitle').textContent=`${n.subject} · ${n.title}`;$('nearestDate').textContent=formatDate(n.date)}else{$('nearestDday').textContent='일정 없음';$('nearestTitle').textContent='등록된 일정이 없습니다';$('nearestDate').textContent=''}}
+function renderCalendar(){const y=viewMonth.getFullYear(),m=viewMonth.getMonth();$('monthLabel').textContent=`${y}년 ${m+1}월`;const first=new Date(y,m,1),start=new Date(y,m,1-first.getDay());let html='';for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=iso(d);const dayItems=items.filter(x=>x.date===key);const out=d.getMonth()!==m;const isToday=key===iso(new Date());html+=`<div class="day ${out?'out':''} ${isToday?'today':''}" data-date="${key}"><div class="num">${d.getDate()}</div><div class="dots">${dayItems.slice(0,3).map(x=>`<div class="eventChip ${diffDays(x.date)<=3&&diffDays(x.date)>=0?'urgent':''}">${esc(x.subject)} ${esc(x.title)}</div>`).join('')}${dayItems.length>3?`<div class="eventChip">+${dayItems.length-3}</div>`:''}</div></div>`}$('calendarGrid').innerHTML=html;document.querySelectorAll('.day').forEach(el=>el.addEventListener('click',()=>openForm(null,el.dataset.date)))}
+function renderList(){const upcoming=items.filter(x=>diffDays(x.date)>=0);if(!upcoming.length){$('upcomingList').innerHTML='<div class="empty">아직 수행평가가 없습니다.<br>오른쪽 아래 + 버튼으로 일정을 추가하세요.</div>';return}$('upcomingList').innerHTML=upcoming.map(x=>`<article class="item"><div class="itemTop"><div><div class="subject">${esc(x.subject)} · ${esc(x.type||'수행평가')}</div><div class="title">${esc(x.title)}</div><div class="meta">${formatDate(x.date)} · 알림 ${esc(x.alertTime||'07:30')}</div></div><div class="dday">${ddayText(x.date)}</div></div>${x.notes?`<div class="notes">${esc(x.notes)}</div>`:''}<div class="actions"><button class="calendarBtn" data-cal="${x.id}">폰 알림 등록</button><button class="editBtn" data-edit="${x.id}">수정</button><button class="deleteBtn" data-del="${x.id}">삭제</button></div></article>`).join('');document.querySelectorAll('[data-cal]').forEach(b=>b.onclick=()=>exportICS(items.find(x=>x.id===b.dataset.cal)));document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openForm(items.find(x=>x.id===b.dataset.edit)));document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{if(confirm('이 수행평가 일정을 삭제할까요?')){items=items.filter(x=>x.id!==b.dataset.del);render();toast('삭제했습니다')}})}
+function openForm(item,dateHint){$('modal').classList.add('show');$('editId').value=item?item.id:'';$('formHeading').textContent=item?'수행평가 수정':'수행평가 추가';$('subject').value=item?.subject||'';$('title').value=item?.title||'';$('date').value=item?.date||dateHint||iso(new Date());$('alertTime').value=item?.alertTime||'07:30';$('type').value=item?.type||'수행평가';$('notes').value=item?.notes||'';$('makeCalendar').checked=!item;setTimeout(()=>$('subject').focus(),150)}
+function closeForm(){$('modal').classList.remove('show');$('assessmentForm').reset();$('alertTime').value='07:30'}
+function icsEscape(s){return String(s||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}
+function stampUTC(){return new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')}
+function localDT(date,time){return date.replace(/-/g,'')+'T'+(time||'07:30').replace(':','')+'00'}
+function addMinutesDT(date,time,mins){const [y,m,d]=date.split('-').map(Number),[hh,mm]=time.split(':').map(Number);const x=new Date(y,m-1,d,hh,mm+mins);return `${x.getFullYear()}${String(x.getMonth()+1).padStart(2,'0')}${String(x.getDate()).padStart(2,'0')}T${String(x.getHours()).padStart(2,'0')}${String(x.getMinutes()).padStart(2,'0')}00`}
+function eventICS(x){const uid=`todayschool-${x.id}@local`;const summary=`[${x.subject}] ${x.title}`;const desc=[x.type||'수행평가',x.notes||'', '오늘학교에서 등록'].filter(Boolean).join('\\n');const alarms=[['-P3D','수행평가 D-3'],['-P2D','수행평가 D-2'],['-P1D','수행평가 D-1'],['PT0S','오늘 수행평가']].map(a=>`BEGIN:VALARM\r\nACTION:DISPLAY\r\nTRIGGER:${a[0]}\r\nDESCRIPTION:${icsEscape(a[1]+' · '+x.subject+' · '+x.title)}\r\nEND:VALARM`).join('\r\n');return `BEGIN:VEVENT\r\nUID:${uid}\r\nDTSTAMP:${stampUTC()}\r\nDTSTART;TZID=Asia/Seoul:${localDT(x.date,x.alertTime)}\r\nDTEND;TZID=Asia/Seoul:${addMinutesDT(x.date,x.alertTime,30)}\r\nSUMMARY:${icsEscape(summary)}\r\nDESCRIPTION:${icsEscape(desc)}\r\n${alarms}\r\nEND:VEVENT`}
+function calendarText(list){return `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//TodaySchool//Assessment Calendar//KO\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\nX-WR-CALNAME:오늘학교 수행평가\r\n${list.map(eventICS).join('\r\n')}\r\nEND:VCALENDAR\r\n`}
+function download(name,text,type){const blob=new Blob([text],{type:type||'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
+function exportICS(x){if(!x)return;download(`오늘학교_${x.date}_${x.subject}.ics`,calendarText([x]),'text/calendar;charset=utf-8');toast('캘린더 파일을 만들었습니다. 폰에서 열어 추가하세요.')}
+$('assessmentForm').addEventListener('submit',e=>{e.preventDefault();const id=$('editId').value||('a'+Date.now()+Math.random().toString(36).slice(2,6));const obj={id,subject:$('subject').value.trim(),title:$('title').value.trim(),date:$('date').value,alertTime:$('alertTime').value,type:$('type').value,notes:$('notes').value.trim()};const idx=items.findIndex(x=>x.id===id);if(idx>=0)items[idx]=obj;else items.push(obj);const make=$('makeCalendar').checked;closeForm();render();toast(idx>=0?'수정했습니다':'저장했습니다');if(make)setTimeout(()=>exportICS(obj),120)});
+$('addBtn').onclick=()=>openForm();$('cancelBtn').onclick=closeForm;$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeForm()});$('prevMonth').onclick=()=>{viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth()-1,1);renderCalendar()};$('nextMonth').onclick=()=>{viewMonth=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,1);renderCalendar()};$('exportAllBtn').onclick=()=>{const f=items.filter(x=>diffDays(x.date)>=0);if(!f.length)return toast('예정된 일정이 없습니다');download('오늘학교_수행평가_전체.ics',calendarText(f),'text/calendar;charset=utf-8');toast('전체 일정 알림 파일을 만들었습니다')};$('backupBtn').onclick=()=>download('오늘학교_수행평가_백업.json',JSON.stringify(items,null,2),'application/json;charset=utf-8');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e});$('installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null}else{alert('브라우저 메뉴에서 “홈 화면에 추가” 또는 “앱 설치”를 선택하면 오늘학교를 앱처럼 사용할 수 있습니다.')}};
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+render();
+</script>
 </body>
 </html>
