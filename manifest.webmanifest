@@ -1,0 +1,14 @@
+{
+  "name": "오늘학교 수행평가",
+  "short_name": "오늘학교",
+  "description": "중동중 2-8 개인용 수행평가 캘린더",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#2563eb",
+  "lang": "ko-KR",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
