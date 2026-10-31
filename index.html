@@ -75,5 +75,13 @@
   };
 </script>
 <script src="./app.js"></script>
+<script>
+  if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js").catch(function(){});}
+  (function(){
+    var isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+    var installed=(window.navigator.standalone===true)||window.matchMedia("(display-mode: standalone)").matches;
+    if(isiOS&&!installed){document.getElementById("installCard").classList.remove("hidden");}
+  })();
+</script>
 </body>
 </html>
