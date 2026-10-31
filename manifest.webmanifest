@@ -1,19 +1,12 @@
 {
-  "name": "오늘학교",
-  "short_name": "오늘학교",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#f6f8fc",
-  "theme_color": "#f7f9fc",
-  "lang": "ko",
-  "description": "중동중학교 2학년 8반 시간표와 수행평가 일정 관리",
-  "icons": [
-    {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "name":"오늘학교",
+  "short_name":"오늘학교",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f6f8fc",
+  "theme_color":"#f7f9fc",
+  "lang":"ko",
+  "description":"중동중학교 2학년 8반 시간표와 수행평가 일정 관리",
+  "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
