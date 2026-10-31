@@ -1,1 +1,74 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Instagram AI Ops</title><link rel="stylesheet" href="/assets/style.css?v=031"></head><body><div class="app"><aside class="side"><div class="brand">Instagram AI Ops<small>다계정 운영 도구</small></div><div class="account-box"><select id="accountSelect" class="account-select"></select><div class="mini"><img id="sideAvatar" class="avatar" alt=""><div><strong id="sideName">계정 미연결</strong><span id="sideFollowers">Instagram 연결 필요</span></div></div></div><div class="nav"><button class="active" data-view="home">홈</button><button data-view="create">게시물 만들기</button><button data-view="posts">내 게시물</button><button data-view="analytics">성과 분석</button><button data-view="comments">댓글 분석</button><button data-view="learning">AI 학습</button><button data-view="settings">계정 설정</button></div><div class="side-bottom"><a class="logout" href="/logout">로그아웃</a></div></aside><main class="main"><div class="mobilebar"><strong>Instagram AI Ops</strong><button class="btn light" id="mobileConnect">계정 연결</button></div><div id="notice" class="notice"></div><div class="top"><div class="title"><h1 id="pageTitle">계정 홈</h1><p id="pageDesc">선택한 Instagram 계정 기준으로 관리합니다.</p></div><div class="top-actions"><button class="btn light" id="syncBtn">지금 동기화</button><button class="btn primary" id="connectBtn">+ Instagram 계정 연결</button></div></div><section id="homeView"><div id="noAccount" class="empty"><h2>Instagram 계정을 연결하세요</h2><p>Business 또는 Creator 계정을 실제로 연결하면 프로필, 팔로워, 최근 게시물이 이 계정 홈에 표시됩니다.</p><button class="btn primary" id="emptyConnect">Instagram 계정 연결</button></div><div id="accountHome" class="hidden"><div class="hero"><div class="card"><div class="profile"><img id="profileAvatar" class="avatar"><div><span id="accountType" class="pill">PROFESSIONAL</span><h2 id="profileName"></h2><div id="profileUser" style="color:#777f8c;font-size:13px"></div></div></div></div><div class="card status"><strong>연결 상태</strong><div id="lastSync">-</div><div id="tokenExpiry">-</div></div></div><div class="grid"><div class="card metric"><div class="label">팔로워</div><div class="value" id="followers">0</div></div><div class="card metric"><div class="label">게시물</div><div class="value" id="mediaCount">0</div></div><div class="card metric"><div class="label">최근 게시물</div><div class="value" id="recentCount">0</div></div><div class="card metric"><div class="label">AI 학습 데이터</div><div class="value">준비 중</div></div><div class="section" style="grid-column:1/-1"><div class="section-head"><h3>최근 Instagram 게시물</h3><span style="color:#8a909a;font-size:12px">실제 연결 계정에서 불러옴</span></div><div id="postsGrid" class="posts"></div></div></div></div></section><section id="placeholderView" class="hidden placeholder"></section></main></div><div id="connectModal" class="modal-backdrop hidden" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><div><h2>Instagram 계정 연결</h2><p>처음 한 번만 Meta 앱 정보를 저장하면 이후 계정을 계속 추가할 수 있습니다.</p></div><button class="close" id="closeModal">×</button></div><div class="steps"><div class="step"><div class="row" style="justify-content:space-between"><h3>1. Meta 앱 설정</h3><span id="metaBadge" class="connection-badge"><span id="metaDot" class="state-dot"></span><span id="metaText">확인 중</span></span></div><p>Meta for Developers에서 만든 Instagram 앱의 App ID와 App Secret을 입력합니다. Secret은 서버가 암호화해서 이 브라우저 전용 쿠키에 저장합니다.</p><div class="fields"><div class="field"><label>Meta App ID</label><input id="metaAppId" autocomplete="off" placeholder="예: 123456789012345"></div><div class="field"><label>Meta App Secret</label><input id="metaAppSecret" type="password" autocomplete="off" placeholder="App Secret"></div><div class="field"><label>Meta에 등록할 Redirect URI</label><div id="redirectUri" class="callback">불러오는 중...</div></div><div class="row"><button class="btn primary" id="saveMetaBtn">Meta 설정 저장</button><button class="btn light" id="clearMetaBtn">설정 지우기</button></div></div></div><div class="step"><h3>2. Instagram 로그인</h3><p>Meta 설정이 저장되면 아래 버튼으로 실제 Business/Creator Instagram 계정을 인증합니다.</p><button class="btn primary" id="instagramLoginBtn">Instagram 로그인으로 연결</button><div id="loginHelp" class="help" style="margin-top:9px"></div></div><div class="step"><h3>보조 방법: Access Token 직접 연결</h3><p>Meta에서 이미 Access Token을 생성한 경우 붙여 넣어 계정을 바로 확인할 수 있습니다.</p><div class="row"><input id="tokenInput" type="password" placeholder="Instagram Access Token" style="flex:1;min-width:220px;height:42px;border:1px solid #dfe3ea;border-radius:10px;padding:0 11px"><button class="btn light" id="tokenBtn">토큰으로 연결</button></div></div></div></div></div><script src="/assets/app.js?v=031"></script></body></html>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creator Account Hub</title>
+<link rel="stylesheet" href="/assets/style.css?v=032">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">Creator Account Hub<small>Instagram 다계정 운영</small></div>
+    <div class="account-box">
+      <select id="accountSelect" class="account-select"></select>
+      <div class="mini"><img id="sideAvatar" class="avatar" alt=""><div><strong id="sideName">계정 미연결</strong><span id="sideFollowers">Instagram 연결 필요</span></div></div>
+    </div>
+    <div class="nav">
+      <button class="active" data-view="home">홈</button>
+      <button data-view="create">게시물 만들기</button>
+      <button data-view="posts">내 게시물</button>
+      <button data-view="analytics">성과 분석</button>
+      <button data-view="comments">댓글 분석</button>
+      <button data-view="learning">AI 학습</button>
+      <button data-view="settings">계정 설정</button>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="mobilebar"><strong>Creator Account Hub</strong><button class="btn light" id="mobileConnect">계정 연결</button></div>
+    <div id="notice" class="notice"></div>
+    <div class="top">
+      <div class="title"><h1 id="pageTitle">계정 홈</h1><p id="pageDesc">선택한 Instagram 계정 기준으로 관리합니다.</p></div>
+      <div class="top-actions"><button class="btn light" id="syncBtn">지금 동기화</button><button class="btn primary" id="connectBtn">+ Instagram 계정 연결</button></div>
+    </div>
+    <section id="homeView">
+      <div id="noAccount" class="empty"><h2>Instagram 계정을 연결하세요</h2><p>비밀번호나 Access Token을 이 사이트에 입력하지 않습니다. Meta의 공식 Instagram 로그인 화면에서 인증합니다.</p><button class="btn primary" id="emptyConnect">Instagram 공식 로그인 연결</button></div>
+      <div id="accountHome" class="hidden">
+        <div class="hero">
+          <div class="card"><div class="profile"><img id="profileAvatar" class="avatar"><div><span id="accountType" class="pill">PROFESSIONAL</span><h2 id="profileName"></h2><div id="profileUser" style="color:#777f8c;font-size:13px"></div></div></div></div>
+          <div class="card status"><strong>연결 상태</strong><div id="lastSync">-</div><div id="tokenExpiry">-</div></div>
+        </div>
+        <div class="grid">
+          <div class="card metric"><div class="label">팔로워</div><div class="value" id="followers">0</div></div>
+          <div class="card metric"><div class="label">게시물</div><div class="value" id="mediaCount">0</div></div>
+          <div class="card metric"><div class="label">최근 게시물</div><div class="value" id="recentCount">0</div></div>
+          <div class="card metric"><div class="label">AI 학습 데이터</div><div class="value">준비 중</div></div>
+          <div class="section" style="grid-column:1/-1"><div class="section-head"><h3>최근 Instagram 게시물</h3><span style="color:#8a909a;font-size:12px">실제 연결 계정</span></div><div id="postsGrid" class="posts"></div></div>
+        </div>
+      </div>
+    </section>
+    <section id="placeholderView" class="hidden placeholder"></section>
+  </main>
+</div>
+<div id="connectModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-head"><div><h2>Instagram 계정 연결</h2><p>이 앱은 Instagram 비밀번호, Meta App Secret, Access Token을 화면에서 요구하지 않습니다.</p></div><button class="close" id="closeModal">×</button></div>
+    <div class="steps">
+      <div class="step">
+        <div class="row" style="justify-content:space-between"><h3>서버 연결 준비</h3><span id="metaBadge" class="connection-badge"><span id="metaDot" class="state-dot"></span><span id="metaText">확인 중</span></span></div>
+        <p id="setupText">서버 설정 상태를 확인하고 있습니다.</p>
+        <div class="field"><label>Meta에 등록할 Redirect URI</label><div id="redirectUri" class="callback">불러오는 중...</div></div>
+        <div id="setupHelp" class="help"></div>
+      </div>
+      <div class="step">
+        <h3>Instagram 공식 로그인</h3>
+        <p>준비가 완료되면 아래 버튼을 눌러 Meta/Instagram의 공식 인증 화면으로 이동합니다.</p>
+        <button class="btn primary" id="instagramLoginBtn">Instagram 공식 로그인으로 연결</button>
+        <div id="loginHelp" class="help" style="margin-top:9px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/app.js?v=032"></script>
+</body>
+</html>
