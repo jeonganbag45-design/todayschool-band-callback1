@@ -313,41 +313,33 @@
         ]
       ],
       "update_date": "2026-10-30 08:56:25",
-      "week_start": "20261026",
+      "week_start": "20261102",
       "days": [
         {
-          "date": "20261026",
+          "date": "20261102",
           "closed": false,
-          "events": [
-            "영어주간"
-          ]
+          "events": []
         },
         {
-          "date": "20261027",
+          "date": "20261103",
           "closed": false,
-          "events": [
-            "영어주간"
-          ]
+          "events": []
         },
         {
-          "date": "20261028",
+          "date": "20261104",
           "closed": false,
-          "events": [
-            "영어주간"
-          ]
+          "events": []
         },
         {
-          "date": "20261029",
+          "date": "20261105",
           "closed": false,
-          "events": [
-            "영어주간"
-          ]
+          "events": []
         },
         {
-          "date": "20261030",
+          "date": "20261106",
           "closed": false,
           "events": [
-            "영어주간"
+            "학급자치"
           ]
         }
       ]
@@ -664,37 +656,45 @@
         ]
       ],
       "update_date": "2026-10-30 08:56:25",
-      "week_start": "20261102",
+      "week_start": "20261109",
       "days": [
         {
-          "date": "20261102",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261103",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261104",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261105",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261106",
+          "date": "20261109",
           "closed": false,
           "events": [
-            "학급자치"
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261110",
+          "closed": false,
+          "events": [
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261111",
+          "closed": false,
+          "events": [
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261112",
+          "closed": false,
+          "events": [
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261113",
+          "closed": false,
+          "events": [
+            "음악주간"
           ]
         }
       ]
     }
   },
-  "updatedAt": "2026-10-31T02:56:01.094477+00:00"
+  "updatedAt": "2026-11-01T15:43:35.945885+00:00"
 }
