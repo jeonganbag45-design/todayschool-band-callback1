@@ -2,22 +2,13 @@
   "ok": true,
   "weeks": {
     "0": {
-      "day_time": [
-        "1(09:00)",
-        "2(09:55)",
-        "3(10:50)",
-        "4(11:45)",
-        "5(13:30)",
-        "6(14:25)",
-        "7(15:20)",
-        "8(16:15)"
-      ],
+      "day_time": [],
       "timetable": [
         [
           {
             "period": 1,
             "subject": "도덕",
-            "teacher": "박소*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -25,8 +16,8 @@
           },
           {
             "period": 2,
-            "subject": "과학B",
-            "teacher": "박영*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -34,8 +25,8 @@
           },
           {
             "period": 3,
-            "subject": "가정",
-            "teacher": "이혜*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -43,8 +34,8 @@
           },
           {
             "period": 4,
-            "subject": "국어A",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -53,7 +44,7 @@
           {
             "period": 5,
             "subject": "영어",
-            "teacher": "정우*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -62,7 +53,7 @@
           {
             "period": 6,
             "subject": "체육",
-            "teacher": "전수*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -72,8 +63,8 @@
         [
           {
             "period": 1,
-            "subject": "스2",
-            "teacher": "우성*",
+            "subject": "동아리활동",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -82,7 +73,7 @@
           {
             "period": 2,
             "subject": "영어",
-            "teacher": "정우*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -90,8 +81,8 @@
           },
           {
             "period": 3,
-            "subject": "국어B",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -99,8 +90,8 @@
           },
           {
             "period": 4,
-            "subject": "과학A",
-            "teacher": "김지*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -109,7 +100,7 @@
           {
             "period": 5,
             "subject": "수학",
-            "teacher": "김종*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -118,7 +109,7 @@
           {
             "period": 6,
             "subject": "역사",
-            "teacher": "양해*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -127,7 +118,7 @@
           {
             "period": 7,
             "subject": "미술",
-            "teacher": "박재*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -138,7 +129,7 @@
           {
             "period": 1,
             "subject": "역사",
-            "teacher": "양해*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -147,7 +138,7 @@
           {
             "period": 2,
             "subject": "체육",
-            "teacher": "전수*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -155,8 +146,8 @@
           },
           {
             "period": 3,
-            "subject": "진영",
-            "teacher": "김은*",
+            "subject": "진로활동",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -164,8 +155,8 @@
           },
           {
             "period": 4,
-            "subject": "국어B",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -173,8 +164,8 @@
           },
           {
             "period": 5,
-            "subject": "기술",
-            "teacher": "조동*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -182,8 +173,8 @@
           },
           {
             "period": 6,
-            "subject": "기술",
-            "teacher": "조동*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -194,7 +185,7 @@
           {
             "period": 1,
             "subject": "역사",
-            "teacher": "양해*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -203,7 +194,7 @@
           {
             "period": 2,
             "subject": "한문",
-            "teacher": "김원*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -212,7 +203,7 @@
           {
             "period": 3,
             "subject": "미술",
-            "teacher": "박재*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -220,8 +211,8 @@
           },
           {
             "period": 4,
-            "subject": "과학B",
-            "teacher": "박영*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -230,7 +221,7 @@
           {
             "period": 5,
             "subject": "수학",
-            "teacher": "김종*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -238,8 +229,8 @@
           },
           {
             "period": 6,
-            "subject": "국어A",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -248,7 +239,7 @@
           {
             "period": 7,
             "subject": "체육",
-            "teacher": "전수*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -258,8 +249,8 @@
         [
           {
             "period": 1,
-            "subject": "과학A",
-            "teacher": "김지*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -267,8 +258,8 @@
           },
           {
             "period": 2,
-            "subject": "가정",
-            "teacher": "이혜*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -277,7 +268,7 @@
           {
             "period": 3,
             "subject": "도덕",
-            "teacher": "박소*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -286,7 +277,7 @@
           {
             "period": 4,
             "subject": "수학",
-            "teacher": "김종*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -295,7 +286,7 @@
           {
             "period": 5,
             "subject": "한문",
-            "teacher": "김원*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -304,7 +295,16 @@
           {
             "period": 6,
             "subject": "영어",
-            "teacher": "정우*",
+            "teacher": "",
+            "replaced": false,
+            "original": null,
+            "cancelled": false,
+            "makeup": false
+          },
+          {
+            "period": 7,
+            "subject": "자율·자치활동",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -312,7 +312,7 @@
           }
         ]
       ],
-      "update_date": "2026-11-03 11:10:14",
+      "update_date": "2026-11-03",
       "week_start": "20261102",
       "days": [
         {
@@ -345,22 +345,13 @@
       ]
     },
     "1": {
-      "day_time": [
-        "1(09:00)",
-        "2(09:55)",
-        "3(10:50)",
-        "4(11:45)",
-        "5(13:30)",
-        "6(14:25)",
-        "7(15:20)",
-        "8(16:15)"
-      ],
+      "day_time": [],
       "timetable": [
         [
           {
             "period": 1,
             "subject": "도덕",
-            "teacher": "박소*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -368,8 +359,8 @@
           },
           {
             "period": 2,
-            "subject": "과학B",
-            "teacher": "박영*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -377,8 +368,8 @@
           },
           {
             "period": 3,
-            "subject": "가정",
-            "teacher": "이혜*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -386,8 +377,8 @@
           },
           {
             "period": 4,
-            "subject": "국어A",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -396,7 +387,7 @@
           {
             "period": 5,
             "subject": "영어",
-            "teacher": "정우*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -405,7 +396,7 @@
           {
             "period": 6,
             "subject": "체육",
-            "teacher": "전수*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -415,8 +406,8 @@
         [
           {
             "period": 1,
-            "subject": "스2",
-            "teacher": "우성*",
+            "subject": "동아리활동",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -425,7 +416,7 @@
           {
             "period": 2,
             "subject": "영어",
-            "teacher": "정우*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -433,8 +424,8 @@
           },
           {
             "period": 3,
-            "subject": "국어B",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -442,8 +433,8 @@
           },
           {
             "period": 4,
-            "subject": "과학A",
-            "teacher": "김지*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -452,7 +443,7 @@
           {
             "period": 5,
             "subject": "수학",
-            "teacher": "김종*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -461,7 +452,7 @@
           {
             "period": 6,
             "subject": "역사",
-            "teacher": "양해*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -470,7 +461,7 @@
           {
             "period": 7,
             "subject": "미술",
-            "teacher": "박재*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -481,7 +472,7 @@
           {
             "period": 1,
             "subject": "역사",
-            "teacher": "양해*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -490,7 +481,7 @@
           {
             "period": 2,
             "subject": "체육",
-            "teacher": "전수*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -498,8 +489,8 @@
           },
           {
             "period": 3,
-            "subject": "진영",
-            "teacher": "김은*",
+            "subject": "진로활동",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -507,8 +498,8 @@
           },
           {
             "period": 4,
-            "subject": "국어B",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -516,8 +507,8 @@
           },
           {
             "period": 5,
-            "subject": "기술",
-            "teacher": "조동*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -525,8 +516,8 @@
           },
           {
             "period": 6,
-            "subject": "기술",
-            "teacher": "조동*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -537,7 +528,7 @@
           {
             "period": 1,
             "subject": "역사",
-            "teacher": "양해*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -546,7 +537,7 @@
           {
             "period": 2,
             "subject": "한문",
-            "teacher": "김원*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -555,7 +546,7 @@
           {
             "period": 3,
             "subject": "미술",
-            "teacher": "박재*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -563,8 +554,8 @@
           },
           {
             "period": 4,
-            "subject": "과학B",
-            "teacher": "박영*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -573,7 +564,7 @@
           {
             "period": 5,
             "subject": "수학",
-            "teacher": "김종*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -581,8 +572,8 @@
           },
           {
             "period": 6,
-            "subject": "국어A",
-            "teacher": "장은*",
+            "subject": "국어",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -591,7 +582,7 @@
           {
             "period": 7,
             "subject": "체육",
-            "teacher": "전수*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -601,8 +592,8 @@
         [
           {
             "period": 1,
-            "subject": "과학A",
-            "teacher": "김지*",
+            "subject": "과학",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -610,8 +601,8 @@
           },
           {
             "period": 2,
-            "subject": "가정",
-            "teacher": "이혜*",
+            "subject": "기술·가정",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -620,7 +611,7 @@
           {
             "period": 3,
             "subject": "도덕",
-            "teacher": "박소*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -629,7 +620,7 @@
           {
             "period": 4,
             "subject": "수학",
-            "teacher": "김종*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -638,7 +629,7 @@
           {
             "period": 5,
             "subject": "한문",
-            "teacher": "김원*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -647,7 +638,7 @@
           {
             "period": 6,
             "subject": "영어",
-            "teacher": "정우*",
+            "teacher": "",
             "replaced": false,
             "original": null,
             "cancelled": false,
@@ -655,7 +646,7 @@
           }
         ]
       ],
-      "update_date": "2026-11-03 11:10:14",
+      "update_date": "2026-11-03",
       "week_start": "20261109",
       "days": [
         {
@@ -696,5 +687,5 @@
       ]
     }
   },
-  "updatedAt": "2026-11-03T02:11:12.092972+00:00"
+  "updatedAt": "2026-11-03T05:02:17.552124+00:00"
 }
