@@ -338,9 +338,7 @@
         {
           "date": "20261106",
           "closed": false,
-          "events": [
-            "학급자치"
-          ]
+          "events": []
         }
       ]
     },
@@ -652,40 +650,30 @@
         {
           "date": "20261109",
           "closed": false,
-          "events": [
-            "음악주간"
-          ]
+          "events": []
         },
         {
           "date": "20261110",
           "closed": false,
-          "events": [
-            "음악주간"
-          ]
+          "events": []
         },
         {
           "date": "20261111",
           "closed": false,
-          "events": [
-            "음악주간"
-          ]
+          "events": []
         },
         {
           "date": "20261112",
           "closed": false,
-          "events": [
-            "음악주간"
-          ]
+          "events": []
         },
         {
           "date": "20261113",
           "closed": false,
-          "events": [
-            "음악주간"
-          ]
+          "events": []
         }
       ]
     }
   },
-  "updatedAt": "2026-11-06T19:01:36.221109+00:00"
+  "updatedAt": "2026-11-07T15:47:54.999828+00:00"
 }
