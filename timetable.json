@@ -300,46 +300,45 @@
             "original": null,
             "cancelled": false,
             "makeup": false
-          },
-          {
-            "period": 7,
-            "subject": "자율·자치활동",
-            "teacher": "",
-            "replaced": false,
-            "original": null,
-            "cancelled": false,
-            "makeup": false
           }
         ]
       ],
       "update_date": "2026-11-08",
-      "week_start": "20261102",
+      "week_start": "20261109",
       "days": [
         {
-          "date": "20261102",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261103",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261104",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261105",
-          "closed": false,
-          "events": []
-        },
-        {
-          "date": "20261106",
+          "date": "20261109",
           "closed": false,
           "events": [
-            "학급자치"
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261110",
+          "closed": false,
+          "events": [
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261111",
+          "closed": false,
+          "events": [
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261112",
+          "closed": false,
+          "events": [
+            "음악주간"
+          ]
+        },
+        {
+          "date": "20261113",
+          "closed": false,
+          "events": [
+            "음악주간"
           ]
         }
       ]
@@ -513,21 +512,12 @@
             "original": null,
             "cancelled": false,
             "makeup": false
-          },
-          {
-            "period": 6,
-            "subject": "기술·가정",
-            "teacher": "",
-            "replaced": false,
-            "original": null,
-            "cancelled": false,
-            "makeup": false
           }
         ],
         [
           {
             "period": 1,
-            "subject": "역사",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -536,7 +526,7 @@
           },
           {
             "period": 2,
-            "subject": "한문",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -545,7 +535,7 @@
           },
           {
             "period": 3,
-            "subject": "미술",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -554,7 +544,7 @@
           },
           {
             "period": 4,
-            "subject": "과학",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -563,7 +553,7 @@
           },
           {
             "period": 5,
-            "subject": "수학",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -572,7 +562,7 @@
           },
           {
             "period": 6,
-            "subject": "국어",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -581,7 +571,7 @@
           },
           {
             "period": 7,
-            "subject": "체육",
+            "subject": "대학수학능력시험",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -592,7 +582,7 @@
         [
           {
             "period": 1,
-            "subject": "과학",
+            "subject": "재량휴업일",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -601,7 +591,7 @@
           },
           {
             "period": 2,
-            "subject": "기술·가정",
+            "subject": "재량휴업일",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -610,7 +600,7 @@
           },
           {
             "period": 3,
-            "subject": "도덕",
+            "subject": "재량휴업일",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -619,7 +609,7 @@
           },
           {
             "period": 4,
-            "subject": "수학",
+            "subject": "재량휴업일",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -628,7 +618,7 @@
           },
           {
             "period": 5,
-            "subject": "한문",
+            "subject": "재량휴업일",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -637,7 +627,7 @@
           },
           {
             "period": 6,
-            "subject": "영어",
+            "subject": "재량휴업일",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -647,45 +637,39 @@
         ]
       ],
       "update_date": "2026-11-08",
-      "week_start": "20261109",
+      "week_start": "20261116",
       "days": [
         {
-          "date": "20261109",
+          "date": "20261116",
           "closed": false,
+          "events": []
+        },
+        {
+          "date": "20261117",
+          "closed": false,
+          "events": []
+        },
+        {
+          "date": "20261118",
+          "closed": false,
+          "events": []
+        },
+        {
+          "date": "20261119",
+          "closed": true,
           "events": [
-            "음악주간"
+            "대학수학능력시험"
           ]
         },
         {
-          "date": "20261110",
-          "closed": false,
+          "date": "20261120",
+          "closed": true,
           "events": [
-            "음악주간"
-          ]
-        },
-        {
-          "date": "20261111",
-          "closed": false,
-          "events": [
-            "음악주간"
-          ]
-        },
-        {
-          "date": "20261112",
-          "closed": false,
-          "events": [
-            "음악주간"
-          ]
-        },
-        {
-          "date": "20261113",
-          "closed": false,
-          "events": [
-            "음악주간"
+            "재량휴업일"
           ]
         }
       ]
     }
   },
-  "updatedAt": "2026-11-07T18:54:02.660446+00:00"
+  "updatedAt": "2026-11-08T15:45:54.158150+00:00"
 }
