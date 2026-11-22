@@ -170,12 +170,21 @@
             "original": null,
             "cancelled": false,
             "makeup": false
+          },
+          {
+            "period": 6,
+            "subject": "기술·가정",
+            "teacher": "",
+            "replaced": false,
+            "original": null,
+            "cancelled": false,
+            "makeup": false
           }
         ],
         [
           {
             "period": 1,
-            "subject": "대학수학능력시험",
+            "subject": "역사",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -184,7 +193,7 @@
           },
           {
             "period": 2,
-            "subject": "대학수학능력시험",
+            "subject": "한문",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -193,7 +202,7 @@
           },
           {
             "period": 3,
-            "subject": "대학수학능력시험",
+            "subject": "미술",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -202,7 +211,7 @@
           },
           {
             "period": 4,
-            "subject": "대학수학능력시험",
+            "subject": "과학",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -211,7 +220,7 @@
           },
           {
             "period": 5,
-            "subject": "대학수학능력시험",
+            "subject": "수학",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -220,7 +229,7 @@
           },
           {
             "period": 6,
-            "subject": "대학수학능력시험",
+            "subject": "국어",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -229,7 +238,7 @@
           },
           {
             "period": 7,
-            "subject": "대학수학능력시험",
+            "subject": "체육",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -240,7 +249,7 @@
         [
           {
             "period": 1,
-            "subject": "재량휴업일",
+            "subject": "과학",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -249,7 +258,7 @@
           },
           {
             "period": 2,
-            "subject": "재량휴업일",
+            "subject": "기술·가정",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -258,7 +267,7 @@
           },
           {
             "period": 3,
-            "subject": "재량휴업일",
+            "subject": "한문",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -267,7 +276,7 @@
           },
           {
             "period": 4,
-            "subject": "재량휴업일",
+            "subject": "영어",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -276,7 +285,7 @@
           },
           {
             "period": 5,
-            "subject": "재량휴업일",
+            "subject": "동아리활동",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -285,7 +294,16 @@
           },
           {
             "period": 6,
-            "subject": "재량휴업일",
+            "subject": "동아리활동",
+            "teacher": "",
+            "replaced": false,
+            "original": null,
+            "cancelled": false,
+            "makeup": false
+          },
+          {
+            "period": 7,
+            "subject": "동아리활동",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -295,35 +313,33 @@
         ]
       ],
       "update_date": "2026-11-22",
-      "week_start": "20261116",
+      "week_start": "20261123",
       "days": [
         {
-          "date": "20261116",
+          "date": "20261123",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261117",
+          "date": "20261124",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261118",
+          "date": "20261125",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261119",
-          "closed": true,
+          "date": "20261126",
+          "closed": false,
+          "events": []
+        },
+        {
+          "date": "20261127",
+          "closed": false,
           "events": [
-            "대학수학능력시험"
-          ]
-        },
-        {
-          "date": "20261120",
-          "closed": true,
-          "events": [
-            "재량휴업일"
+            "동아리활동"
           ]
         }
       ]
@@ -594,7 +610,7 @@
           },
           {
             "period": 3,
-            "subject": "한문",
+            "subject": "도덕",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -603,7 +619,7 @@
           },
           {
             "period": 4,
-            "subject": "영어",
+            "subject": "수학",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -612,7 +628,7 @@
           },
           {
             "period": 5,
-            "subject": "동아리활동",
+            "subject": "한문",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -621,16 +637,7 @@
           },
           {
             "period": 6,
-            "subject": "동아리활동",
-            "teacher": "",
-            "replaced": false,
-            "original": null,
-            "cancelled": false,
-            "makeup": false
-          },
-          {
-            "period": 7,
-            "subject": "동아리활동",
+            "subject": "영어",
             "teacher": "",
             "replaced": false,
             "original": null,
@@ -640,37 +647,35 @@
         ]
       ],
       "update_date": "2026-11-22",
-      "week_start": "20261123",
+      "week_start": "20261130",
       "days": [
         {
-          "date": "20261123",
+          "date": "20261130",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261124",
+          "date": "20261201",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261125",
+          "date": "20261202",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261126",
+          "date": "20261203",
           "closed": false,
           "events": []
         },
         {
-          "date": "20261127",
+          "date": "20261204",
           "closed": false,
-          "events": [
-            "동아리활동"
-          ]
+          "events": []
         }
       ]
     }
   },
-  "updatedAt": "2026-11-21T18:58:01.923894+00:00"
+  "updatedAt": "2026-11-22T15:54:49.184606+00:00"
 }
